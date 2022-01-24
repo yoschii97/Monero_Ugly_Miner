@@ -1,0 +1,106 @@
+WindowManager:
+    InputWindow:
+    MiningWindow:
+
+<InputWindow>:
+    name: "input"
+    host: host
+    port: port
+    wallet: wallet
+
+    GridLayout:
+        cols:1
+        spacing: 10, 10
+        padding: 10, 10
+
+        Label:
+            text: "[size=10]This is just a small ugly app that tries to generate Monero coins through RandomX (pyrx). I don't do this as a full-time job and more as a hobby. So try it out and consider to run your device sometime in \"test mode\", because calculated coins in \"test mode\" are transferred to my wallet as a donation.\n[size=6]Questions please at yourmail@domain.com\nHier github...\n[/size]\n[u][b]Host[/b][/u] - The host is the pool address to be mined from. \nFor example, cryptonote.social. (I only tested this on)\n[u][b]Port[/b][/u] - The port is the port under which the mining pool can be reached. \nE.g. 5555\n[u][b]Wallet[/b][/u] - Wallet means your wallet address on which you want to mine. \nSince this address is very long, I recommend inserting this copy and paste.\n[/size]"
+            markup: 'true'
+            text_size: self.size
+            halign: 'left'
+            valign: 'top'
+
+        GridLayout:
+            cols:2
+            spacing: 10, 10
+            height: self.minimum_height
+            Label:
+                id: host
+                text: "Host:"
+                size_hint: None, None
+                height: 30
+                width: 50
+            TextInput:
+                id:host
+                size_hint_y: None
+                height: 30
+                multiline: True
+            Label:
+                text: "Port:"
+                size_hint: None, None
+                height: 30
+                width: 50
+            TextInput:
+                id:port
+                size_hint_y: None
+                height: 30
+                multiline: True
+            Label:
+                text: "Wallet:"
+                size_hint: None, None
+                height: 30
+                width: 50
+            TextInput:
+                id:wallet
+                size_hint_y: None
+                height: 30
+                multiline: True
+            Label:
+                text: "test mode:"
+                size_hint: None, None
+                height: 30
+                width: 60
+            CheckBox:
+                on_active: root.checkbox_click(self, self.active)
+                size_hint: None, None
+                height: 30
+                halign: 'left'
+
+        Button:
+            size_hint: 0.3, 0.2
+            pos_hint: {"x":0.5, "y":0.5}
+            text: "Mining"
+            on_release:
+                if root.mining_button() == True: \
+                app.root.current = "mining"; \
+                app.start_mining()
+
+<MiningWindow>:
+    name: "mining"
+    scrollview: scrollview
+    GridLayout:
+        cols:1
+        spacing: 10, 10
+        padding: 10, 10
+        height: self.minimum_height
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            Label:
+                id: scrollview
+                size_hint_y: None
+                height: self.texture_size[1]
+                text_size: self.width, None
+                text: "Mining Logger ...\n"
+                padding: 10, 10
+                markup: 'true'
+
+        Button:
+            size_hint: 0.3, 0.2
+            pos_hint: {"x":0.5, "y":0.5}
+            text: "Quit"
+            on_release:
+                app.root.current = "input"; \
+                app.stop_mining()
