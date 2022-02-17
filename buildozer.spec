@@ -13,7 +13,7 @@ package.domain = org.uglyminer
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,so
+source.include_exts =
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -37,11 +37,11 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,git+https://github.com/yoschii97/RandomXpy
+requirements = python3,kivy,randomxpy
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
-# requirements.source.kivy = "/home/jonas/PycharmProjects/Monero_Ugly_Miner/requirements.txt"
+# requirements.source.kivy =
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/data/presplash.png
@@ -299,10 +299,10 @@ android.allow_backup = True
 #p4a.commit = HEAD
 
 # (str) python-for-android git clone directory (if empty, it will be automatically cloned from github)
-#p4a.source_dir =
+p4a.source_dir = ./python-for-android
 
 # (str) The directory in which python-for-android should look for your own build recipes (if any)
-#p4a.local_recipes =
+#p4a.local_recipes = ./python-for-android/pythonforandroid/recipes/RandomXpy/__init.py
 
 # (str) Filename to the hook for p4a
 #p4a.hook =
